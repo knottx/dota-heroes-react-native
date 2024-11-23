@@ -8,6 +8,38 @@ export enum DotaHeroAttribute {
   Universal = 'all',
 }
 
+export const DotaHeroAttributeUtils = {
+  getTitle(attribute: DotaHeroAttribute): string {
+    switch (attribute) {
+      case DotaHeroAttribute.Strength:
+        return 'Strength';
+      case DotaHeroAttribute.Agility:
+        return 'Agility';
+      case DotaHeroAttribute.Intelligence:
+        return 'Intelligence';
+      case DotaHeroAttribute.Universal:
+        return 'Universal';
+      default:
+        return '';
+    }
+  },
+
+  // getIcon(attribute: DotaHeroAttribute): any {
+  //   switch (attribute) {
+  //     case DotaHeroAttribute.Strength:
+  //       return require('@assets/images/hero_strength.png');
+  //     case DotaHeroAttribute.Agility:
+  //       return require('@assets/images/hero_agility.png');
+  //     case DotaHeroAttribute.Intelligence:
+  //       return require('@assets/images/hero_intelligence.png');
+  //     case DotaHeroAttribute.Universal:
+  //       return require('@assets/images/hero_universal.png');
+  //     default:
+  //       return null;
+  //   }
+  // },
+};
+
 export enum DotaHeroAttackType {
   Melee = 'Melee',
   Ranged = 'Ranged',

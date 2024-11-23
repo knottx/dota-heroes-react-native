@@ -12,15 +12,25 @@ import HomeScreen from './src/modules/home/HomeScreen';
 import DotaHeroDetailScreen from './src/modules/dota-hero-detail/DotaHeroDetailScreen';
 
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {AppColors} from './src/constants/AppColors';
+import {DotaHero} from './src/models/DotaHero';
 
-const Stack = createNativeStackNavigator();
+export type RootStackParamList = {
+  Home: undefined;
+  DotaHeroDetailScreen: {hero: DotaHero};
+};
+
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function App(): React.JSX.Element {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
+      <Stack.Navigator>
         <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Details" component={DotaHeroDetailScreen} />
+        <Stack.Screen
+          name="DotaHeroDetailScreen"
+          component={DotaHeroDetailScreen}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

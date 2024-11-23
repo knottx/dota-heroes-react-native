@@ -103,7 +103,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({navigation}) => {
   return (
     <ImageBackground
       source={require('../../../assets/images/background.jpg')}
-      style={styles.backgroundImage}
+      style={{flex: 1}}
       imageStyle={{resizeMode: 'cover'}}>
       <SafeAreaView style={{flex: 1}}>
         <View
@@ -213,7 +213,11 @@ const HomeScreen: React.FC<HomeScreenProps> = ({navigation}) => {
           keyExtractor={item => item.id?.toString() ?? '0'}
           style={styles.flatList}
           renderItem={({item}) => (
-            <View style={[styles.heroTile, {width: tileWidth}]}>
+            <TouchableOpacity
+              onPress={() =>
+                navigation.navigate('DotaHeroDetailScreen', {hero: item})
+              }
+              style={[styles.heroTile, {width: tileWidth}]}>
               <ImageBackground
                 source={{uri: DotaHeroModel.imageUrl(item)}}
                 style={styles.heroImageBackground}>
@@ -227,7 +231,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({navigation}) => {
                   <Text style={styles.heroName}>{item.localizedName}</Text>
                 </View>
               </ImageBackground>
-            </View>
+            </TouchableOpacity>
           )}
         />
       </SafeAreaView>
@@ -240,10 +244,6 @@ const styles = StyleSheet.create({
     width: 100,
     height: 44,
     resizeMode: 'contain',
-  },
-  backgroundImage: {
-    flex: 1,
-    justifyContent: 'center',
   },
   flatList: {
     flex: 1,
