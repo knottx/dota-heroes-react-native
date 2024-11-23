@@ -11,6 +11,7 @@ import {
   SafeAreaView,
   Image,
   TouchableOpacity,
+  TextInput,
 } from 'react-native';
 import {HomeScreenViewModel} from './HomeScreenViewModel';
 import {
@@ -58,7 +59,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({navigation}) => {
 
   const [sortAsc, setSortAsc] = useState<Boolean>(true);
 
-  const [searchText, setSearchText] = useState<String>('');
+  const [searchText, setSearchText] = useState<string>('');
 
   const onTapAttribute = (attribute: DotaHeroAttribute) => {
     setSelectedAttribute(prev => (prev === attribute ? null : attribute));
@@ -198,7 +199,13 @@ const HomeScreen: React.FC<HomeScreenProps> = ({navigation}) => {
               </TouchableOpacity>
             </View>
           </View>
-          TextF
+          <TextInput
+            style={styles.searchInput}
+            placeholder="Search heroes..."
+            placeholderTextColor="#AAA"
+            value={searchText}
+            onChangeText={setSearchText}
+          />
         </View>
         <FlatList
           data={filteredHeroes()}
@@ -287,6 +294,16 @@ const styles = StyleSheet.create({
     color: AppColors.primary,
     fontSize: 16,
     marginLeft: 10,
+  },
+  searchInput: {
+    height: 40,
+    borderColor: '#CCC',
+    borderWidth: 1,
+    borderRadius: 5,
+    paddingHorizontal: 10,
+    margin: 10,
+    color: '#FFF',
+    backgroundColor: AppColors.tertiary,
   },
 });
 
